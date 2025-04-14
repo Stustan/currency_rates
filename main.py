@@ -1,22 +1,31 @@
 from currency_exchange import CurrencyExchange
 
+def get_currency_input() -> str:
+    """
+    Get currency code from user input with validation
+    """
+    while True:
+        currency = input("Введите трехбуквенный код валюты (например, USD, EUR, RUB): ").upper()
+        if len(currency) == 3 and currency.isalpha():
+            return currency
+        print("Ошибка: введите корректный трехбуквенный код валюты")
+
 def main():
-    # Создаем первый экземпляр
-    exchange1 = CurrencyExchange()
+    # Создаем экземпляр CurrencyExchange
+    exchange = CurrencyExchange()
     
-    # Пробуем создать второй экземпляр (должен вернуть тот же объект)
-    exchange2 = CurrencyExchange()
+    # Получаем валюту от пользователя
+    base_currency = get_currency_input()
     
-    # Проверяем, что это один и тот же объект
-    print(f"Are instances the same? {exchange1 is exchange2}")
-    
-    # Получаем курсы валют для USD
-    rates = exchange1.get_exchange_rate("USD")
+    # Получаем курсы валют
+    rates = exchange.get_exchange_rate(base_currency)
     
     if rates:
-        print("\nExchange rates for USD:")
+        print(f"\nКурсы валют относительно {base_currency}:")
         for currency, rate in rates.get('rates', {}).items():
             print(f"{currency}: {rate}")
+    else:
+        print("Не удалось получить курсы валют. Проверьте правильность введенного кода валюты.")
 
 if __name__ == "__main__":
     main() 

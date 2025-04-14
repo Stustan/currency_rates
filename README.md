@@ -6,6 +6,7 @@ This is a Python application that fetches current exchange rates using the Excha
 
 - Implements Singleton pattern for efficient resource management
 - Fetches real-time currency exchange rates
+- Interactive currency code input with validation
 - Simple and clean API interface
 - Error handling for API requests
 
@@ -24,17 +25,24 @@ pip install -r requirements.txt
 
 ## Usage
 
-```python
-from currency_exchange import CurrencyExchange
+1. Run the application:
+```bash
+python main.py
+```
 
-# Get instance of CurrencyExchange
-exchange = CurrencyExchange()
+2. Enter a three-letter currency code when prompted (e.g., USD, EUR, RUB)
 
-# Get exchange rates for USD
-rates = exchange.get_exchange_rate("USD")
+3. The application will display exchange rates for all available currencies relative to your chosen currency.
 
-# Print rates
-print(rates)
+Example output:
+```
+Введите трехбуквенный код валюты (например, USD, EUR, RUB): USD
+
+Курсы валют относительно USD:
+EUR: 0.92
+GBP: 0.79
+JPY: 150.12
+...
 ```
 
 ## Requirements
